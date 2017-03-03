@@ -84,6 +84,13 @@
 		});
 		
 		
+		$.Azbn7.mdl('fnc').include('/js/azbn7/mdl/cart.mdl.js', function(){
+			
+			$.Azbn7.body.find('.azbn7-cart').trigger('azbn7.mdl.cart.calculation');
+			
+		});
+		
+		
 	}
 	
 })();

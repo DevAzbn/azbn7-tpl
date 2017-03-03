@@ -23,14 +23,15 @@
 				
 				ctrl.startSpy = function(element, what, cb){
 					
-					var uid = $.Azbn7.randstr();
-					
+					var uid = null;
 					
 					var _element = element.eq(0).get(0);
 					
 					var _cfg = $.extend({}, ctrl.observer_config, what);
 					
 					if(caniuse) {
+						
+						uid = $.Azbn7.randstr();
 						
 						element.attr('data-' + ctrl.uid + '-uid', uid);
 						
@@ -49,7 +50,7 @@
 				
 				ctrl.stopSpy = function(uid) {
 					
-					if(caniuse) {
+					if(caniuse && ctrl.__observers[uid]) {
 						
 						(ctrl.__observers[uid]).disconnect();
 						
