@@ -3,6 +3,7 @@
 	
 	if($.Azbn7) {
 		
+		
 		$.Azbn7.mdl('fnc').include('/js/azbn7/mdl/api.mdl.js', function(){
 			
 			
@@ -25,28 +26,47 @@
 			*/
 			
 			
-			$.Azbn7.mdl('fnc').include('/js/azbn7/mdl/codecache.mdl.js', function(){
-				
-				$.Azbn7.mdl('CodeCache').doUpdate(10 * 1000);
-				
-				$.Azbn7.mdl('CodeCache').load({
-					tag : 'script',
-					uid : 'codecache.js.test',
-					url : '/js/azbn7/test.js',
-					expires_in : 900,
-				}, function(element){
-					element
-						.appendTo($.Azbn7.body)
-						//.empty()
-						//.remove()
-					;
-				});
-				
+			
+		});
+		
+		
+		$.Azbn7.mdl('fnc').include('/js/azbn7/mdl/codecache.mdl.js', function(){
+			
+			
+			$.Azbn7.mdl('CodeCache').doUpdate(10 * 1000);
+			
+			
+			/*
+			$.Azbn7.mdl('CodeCache').load({
+				tag : 'script',
+				uid : 'js.test',
+				url : '/js/azbn7/test.js',
+				expires_in : 900,
+			}, function(element){
+				element
+					.appendTo($.Azbn7.body)
+					.empty()
+					.remove()
+				;
 			});
 			
+			$.Azbn7.mdl('CodeCache').load({
+				tag : 'style',
+				uid : 'css.live-edit',
+				url : '/css/azbn7-live-edit.css',
+				expires_in : 3600,
+			}, function(element){
+				element
+					.appendTo($.Azbn7.body)
+					//.empty()
+					//.remove()
+				;
+			});
+			*/
 			
 			
 		});
+		
 		
 	}
 	

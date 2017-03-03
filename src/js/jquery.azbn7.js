@@ -187,7 +187,7 @@ if(jQuery) {
 					//script.setAttribute('data-url', url);
 					script.setAttribute('class', 'azbn7__mdl__fnc__include');
 					
-					if(url.indexOf('http') < 0) {
+					if(url.indexOf('http://') < 0 && url.indexOf('https://') < 0 && url.indexOf('//') != 0) {
 						url = ctrl.config.path.root + url;
 					}
 					

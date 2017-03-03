@@ -25,6 +25,12 @@
 					
 					reload_in_body = reload_in_body || false;
 					
+					var _url = code.url;
+					
+					if(_url.indexOf('http://') < 0 && _url.indexOf('https://') < 0 && _url.indexOf('//') != 0) {
+						_url = $.Azbn7.config.path.root + _url;
+					}
+					
 					$.ajax(code.url, {
 						type : 'GET',
 						dataType : 'text',
@@ -113,12 +119,14 @@
 					
 					var newcode = $.extend({}, {
 						tag : '!--',
-						uid : 'codecache.html.default',
+						uid : 'html.default',
 						url : '',
 						expires : $.Azbn7.now_sec() + (item.expires_in || ctrl.config.expires_in),
 						expires_in : 3600,
 						html : '',
 					}, item);
+					
+					newcode.uid = ctrl.name + '.' + newcode.uid;
 					
 					var code = $.Azbn7.ls.s2obj(newcode.uid);
 					
