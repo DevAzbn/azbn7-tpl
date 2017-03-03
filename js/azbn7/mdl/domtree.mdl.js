@@ -1,0 +1,1 @@
+!function(r){r.Azbn7&&!function(){var e=function(){var e=this;return e.observer_config={attributes:!0,childList:!0,characterData:!0},e.__observers={},e.observe=function(n,t){var o=r.Azbn7.randstr(),s=new MutationObserver(function(r){r.forEach(t)});return s.observe(n,e.observer_config),e.__observers[o]=s,o},e};r.Azbn7.load("DOMTree",new e)}()}(jQuery);

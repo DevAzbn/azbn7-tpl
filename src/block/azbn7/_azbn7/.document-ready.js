@@ -68,6 +68,17 @@
 		});
 		
 		
+		$.Azbn7.mdl('fnc').include('/js/azbn7/mdl/domtree.mdl.js', function(){
+			
+			
+			$.Azbn7.mdl('DOMTree').observe($.Azbn7.body.get(0), function(mutation){
+				console.log(mutation);
+			});
+			
+			
+		});
+		
+		
 	}
 	
 })();
