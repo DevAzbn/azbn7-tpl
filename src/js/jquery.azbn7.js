@@ -20,17 +20,22 @@ if(jQuery) {
 			ctrl.__param = {};
 			
 			
+			
+			
 			if(typeof cfg != 'object') {
 				cfg = new Object();
-			} 
-			
+			}
 			
 			ctrl.config = $.extend({}, {
+				is_dev : true,
 				prefix : 'azbn7',
-				url : '/api/v1/',
-				access_as : 'user',
-				key : 'public',
-				method : 'version',
+				path : {
+					root : '',
+					js : '',
+					css : '',
+					img : '',
+					fonts : '',
+				}
 			}, cfg);
 			
 			
@@ -51,17 +56,18 @@ if(jQuery) {
 			};
 			
 			ctrl.ls = {
-				set : function(id,value) {localStorage.setItem(ctrl.config.prefix + id,value);},
-				get : function(id) {var item = localStorage.getItem(ctrl.config.prefix + id);if(typeof item !== 'undefined' && item != null) {return item;} else {return null;}},
-				remove : function(id) {localStorage.removeItem(ctrl.config.prefix + id);},
+				set : function(id,value) {localStorage.setItem(ctrl.config.prefix + '.' + id,value);},
+				get : function(id) {var item = localStorage.getItem(ctrl.config.prefix + '.' + id);if(typeof item !== 'undefined' && item != null) {return item;} else {return null;}},
+				remove : function(id) {localStorage.removeItem(ctrl.config.prefix + '.' + id);},
 				clear : function() {localStorage.clear();},
 				obj2s : function(id,obj2save) {this.set(id, JSON.stringify(obj2save));},
 				s2obj : function(id) {var item = this.get(id);if(typeof item !== 'undefined' && item != null) {return JSON.parse(item);} else {return null;}},
 			};
+			
 			ctrl.ss = {
-				set : function(id,value) {sessionStorage.setItem(ctrl.config.prefix + id,value);},
-				get : function(id) {var item = sessionStorage.getItem(ctrl.config.prefix + id);if(typeof item !== 'undefined' && item != null) {return item;} else {return null;}},
-				remove : function(id) {sessionStorage.removeItem(ctrl.config.prefix + id);},
+				set : function(id,value) {sessionStorage.setItem(ctrl.config.prefix + '.' + id,value);},
+				get : function(id) {var item = sessionStorage.getItem(ctrl.config.prefix + '.' + id);if(typeof item !== 'undefined' && item != null) {return item;} else {return null;}},
+				remove : function(id) {sessionStorage.removeItem(ctrl.config.prefix + '.' + id);},
 				clear : function() {sessionStorage.clear();},
 				obj2s : function(id,obj2save) {this.set(id, JSON.stringify(obj2save));},
 				s2obj : function(id) {var item = this.get(id);if(typeof item !== 'undefined' && item != null) {return JSON.parse(item);} else {return null;}},
@@ -180,12 +186,15 @@ if(jQuery) {
 					script.type = 'text/javascript';
 					//script.setAttribute('data-url', url);
 					script.setAttribute('class', 'azbn7__mdl__fnc__include');
+					
+					if(url.indexOf('http') < 0) {
+						url = ctrl.config.path.root + url;
+					}
+					
 					script.src = url;
 					
 					document.documentElement.appendChild(script);
-					
 					//document.createTextNode('azbn7 test');
-					
 				},
 				
 				script2head : function(url, cb){
@@ -219,12 +228,12 @@ if(jQuery) {
 					
 				},
 				
-				tpl : function(str,tpls){
+				tpl : function(str, tpls){
 					
-					var _str = '';
+					var _str = str;
 					
 					for(var key in tpls) {
-						_str = str.replace(key, tpls[key]);
+						_str = _str.replace(key, tpls[key]);
 					}
 					
 					return _str;
@@ -250,31 +259,6 @@ if(jQuery) {
 				},
 			});
 			
-			
-			/* ---------- API вызов ---------- */
-			
-			ctrl.api = function(params, cb) {
-				
-				params.key = ctrl.config.key;
-				params.access_as = ctrl.config.access_as;
-				
-				if(params.method) {
-					
-				} else {
-					params.method = ctrl.config.method;
-				}
-				
-				$.ajax({
-					url : ctrl.config.url,
-					type : 'POST',
-					dataType : 'json',
-					data : params,
-					success : cb,
-				});
-				
-			};
-			
-			/* ---------- /API вызов ---------- */
 			
 			return ctrl;
 			
