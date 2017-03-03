@@ -8,6 +8,11 @@
 				
 				var ctrl = this;
 				
+				var caniuse = typeof MutationObserver != 'undefined';
+				
+				ctrl.name = 'domtree';
+				ctrl.uid = 'azbn7__mdl__domtree';
+				
 				ctrl.observer_config = {
 					attributes : true,
 					childList : true,
@@ -16,21 +21,43 @@
 				
 				ctrl.__observers = {};
 				
-				ctrl.observe = function(element, cb){
-					
-					//var el = element.get(0);
+				ctrl.startSpy = function(element, what, cb){
 					
 					var uid = $.Azbn7.randstr();
 					
-					var observer = new MutationObserver(function(mutations) {
-						mutations.forEach(cb /*function(mutation) {//console.log(mutation.type);}*/ );
-					});
 					
-					observer.observe(element, ctrl.observer_config);
+					var _element = element.eq(0).get(0);
 					
-					ctrl.__observers[uid] = observer;
+					var _cfg = $.extend({}, ctrl.observer_config, what);
+					
+					if(caniuse) {
+						
+						element.attr('data-' + ctrl.uid + '-uid', uid);
+						
+						var observer = new MutationObserver(cb);
+						//mutations.forEach(cb /*function(mutation) {//console.log(mutation.type);}*/ );
+						
+						observer.observe(_element, _cfg);
+						
+						ctrl.__observers[uid] = observer;
+						
+					}
 					
 					return uid;
+					
+				};
+				
+				ctrl.stopSpy = function(uid) {
+					
+					if(caniuse) {
+						
+						(ctrl.__observers[uid]).disconnect();
+						
+					}
+					
+					ctrl.__observers[uid] = null;
+					
+					delete ctrl.__observers[uid];
 					
 				};
 				

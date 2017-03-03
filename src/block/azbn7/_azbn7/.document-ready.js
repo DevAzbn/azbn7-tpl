@@ -71,9 +71,14 @@
 		$.Azbn7.mdl('fnc').include('/js/azbn7/mdl/domtree.mdl.js', function(){
 			
 			
-			$.Azbn7.mdl('DOMTree').observe($.Azbn7.body.get(0), function(mutation){
-				console.log(mutation);
+			$.Azbn7.mdl('DOMTree').startSpy($.Azbn7.body, {
+				attributes : true,
+				childList : true,
+				characterData: true,
+			}, function(mutations){
+				console.log(mutations);
 			});
+			//$.Azbn7.mdl('DOMTree').stopSpy();
 			
 			
 		});
