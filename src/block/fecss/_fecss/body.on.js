@@ -1,5 +1,5 @@
 
-$(document.body).on('azbn7.init',		null, {}, function(event) {
+$(document.body).on('azbn7.init', null, {}, function(event) {
 	
 	$(document.body).attr('data-created_at', new Date().getTime());
 	
