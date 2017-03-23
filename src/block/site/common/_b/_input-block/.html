@@ -1,32 +1,30 @@
-<div class="b__container" >
-
 	<form data-input-status="" >
 		
 		<div class="input-block " data-required="text" data-input-status="" >
-			<label>Имя <span class="status" ></span></label>
-			<input name="f[Контакт]" value="" />
+			<label>Имя <span class="status" ></span><span class="help" >помощь</span></label>
+			<input name="f[Контакт]" value="Name" />
 		</div>
+		
+		<hr />
 		
 		<div class="input-block " data-required="email" data-input-status="" >
 			<label>Email <span class="status" ></span></label>
-			<input name="f[Контакт]" value="" />
+			<input name="f[Контакт]" value="test@test.com" />
 		</div>
 		
 		<div class="input-block " data-required="password" data-input-status="" >
 			<label>Пароль <span class="status" ></span></label>
-			<input type="password" name="f[Контакт]" value="" />
+			<input type="password" name="f[Контакт]" value="password" />
 		</div>
 		
 		<div class="input-block "  data-required="text" data-input-status="" >
 			<label>Ваше сообщение <span class="status" ></span></label>
-			<textarea name="f[Текст сообщения]" ></textarea>
+			<textarea name="f[Текст сообщения]" >message</textarea>
 		</div>
 		
 		<div class="submit-block "  data-input-status="ok" >
-			<input type="submit" value="Отправить" />
+			<input type="submit" class="__xs__fullwidth" value="Отправить" />
 			<span class="help" >Нажмите для отправки формы</span>
 		</div>
 		
 	</form>
-
-</div>
