@@ -48,6 +48,15 @@ function __fecss_ScreenJS() {
 		return (ctrl.screen.w > 1199);
 	};
 	
+	ctrl.isMax = function(w) {
+		return ctrl.screen.w > w ? false : true;
+	}
+	
+	ctrl.isMin = function(w) {
+		//console.log(ctrl.screen.w);
+		return ctrl.screen.w < w ? false : true;
+	}
+	
 	ctrl.screenIs = function() {
 		var result = 'noname';
 		if(ctrl.isXS()) {
@@ -120,8 +129,18 @@ function __fecss_ScreenJS() {
 	}
 	
 	ctrl.setScreen = function() {
-		ctrl.screen.w = $(window).outerWidth(true);
-		ctrl.screen.h = $(window).outerHeight(true);
+		var w = window,
+			d = document,
+			e = d.documentElement,
+			g = d.getElementsByTagName('body')[0],
+			x = w.innerWidth || e.clientWidth || g.clientWidth,
+			y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+		
+		ctrl.screen.w = x;
+		ctrl.screen.h = y;
+		
+		//ctrl.screen.w = $(window).outerWidth(true);
+		//ctrl.screen.h = $(window).outerHeight(true);
 		ctrl.screen.type = ctrl.screenIs();
 		ctrl.screen.orientation = ctrl.orientationIs();
 		
@@ -131,9 +150,13 @@ function __fecss_ScreenJS() {
 		return ctrl.screen;
 	};
 	
+	return ctrl;
+	
 };
 
 var screenJS = new __fecss_ScreenJS();
+
+screenJS.setScreen();
 
 $(window).on('resize', function(){
 	screenJS.setScreen();
@@ -166,7 +189,7 @@ screenJS.onResize({type : 'xs', orientation : 'portrait'}, function(new_screen){
 
 */
 
-
+/*
 (function($){
 	
 	var originalAddClassMethod = jQuery.fn.addClass;
@@ -195,3 +218,4 @@ screenJS.onResize({type : 'xs', orientation : 'portrait'}, function(new_screen){
 	}
 	
 })(jQuery);
+*/

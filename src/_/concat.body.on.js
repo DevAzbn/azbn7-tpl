@@ -1,1 +1,1 @@
-$(document.body).on("azbn7.init",null,{},function(t){$(document.body).attr("data-created_at",(new Date).getTime())});
+"use strict";

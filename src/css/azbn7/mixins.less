@@ -1,0 +1,27 @@
+.mp0(@size: 0px) {
+	margin:@size;
+	padding:@size;
+}
+
+.box-sizing-bbox() {
+	box-sizing:border-box;
+}
+
+.setWidth(@w:100) {
+	width:percentage(@w/100);
+}
+
+.cleardefault() {
+	-ms-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.calcFontSize(@f-min, @f-max, @v-min, @v-max){
+	font-size: ~"calc( (100vw - @{v-min}px) / (@{v-max} - @{v-min}) * (@{f-max} - @{f-min}) + @{f-min}px)";
+}
+.calcLineHeight(@f-min, @f-max, @v-min, @v-max){
+	line-height: ~"calc( (100vw - @{v-min}px) / (@{v-max} - @{v-min}) * (@{f-max} - @{f-min}) + @{f-min}px)";
+}
