@@ -91,6 +91,13 @@
 		});
 		
 		
+		$.Azbn7.mdl('fnc').include('/js/azbn7/mdl/metric.mdl.js', function(){
+			
+			$.Azbn7.mdl('Metric').target('azbn7.page.view', {});
+			
+		});
+		
+		
 	}
 	
 })();
