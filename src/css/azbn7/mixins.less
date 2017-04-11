@@ -18,10 +18,3 @@
 	-webkit-appearance: none;
 	appearance: none;
 }
-
-.calcFontSize(@f-min, @f-max, @v-min, @v-max){
-	font-size: ~"calc( (100vw - @{v-min}px) / (@{v-max} - @{v-min}) * (@{f-max} - @{f-min}) + @{f-min}px)";
-}
-.calcLineHeight(@f-min, @f-max, @v-min, @v-max){
-	line-height: ~"calc( (100vw - @{v-min}px) / (@{v-max} - @{v-min}) * (@{f-max} - @{f-min}) + @{f-min}px)";
-}

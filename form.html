@@ -6,10 +6,12 @@
 <meta name="referrer" content="never">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <!--
 <meta name="document-state" content="Dynamic" />
 <meta name="resource-type" content="document" />
 -->
+
 <meta HTTP-EQUIV="Cache-Control" content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -25,15 +27,44 @@
 	data-azbn7__mdl__api='{"request_method":"GET","access_as":"profile","key":"1487360638C290E5E7314FB26A0DE0172E7AA8525C"}'
 	>
 
-<header class="nav-block __bg__c-main-bg " >
+<header class=" {{class}} " >
 	header
 </header>
 
-<div class="b__container__padding" >
-	
+<div class="" >
+		<form data-input-status="" >
+		
+		<div class="input-block " data-required="text" data-input-status="" >
+			<label class="input-block__label" >Имя <span class="input-block__status" ></span><span class="input-block__help" >помощь</span></label>
+			<input name="f[Контакт]" value="Name" />
+		</div>
+		
+		<hr />
+		
+		<div class="input-block " data-required="email" data-input-status="" >
+			<label class="input-block__label" >Email <span class="input-block__status" ></span></label>
+			<input name="f[Контакт]" value="test@test.com" />
+		</div>
+		
+		<div class="input-block " data-required="password" data-input-status="" >
+			<label class="input-block__label" >Пароль <span class="input-block__status" ></span></label>
+			<input type="password" name="f[Контакт]" value="password" />
+		</div>
+		
+		<div class="input-block "  data-required="text" data-input-status="" >
+			<label class="input-block__label" >Ваше сообщение <span class="input-block__status" ></span></label>
+			<textarea name="f[Текст сообщения]" >message</textarea>
+		</div>
+		
+		<div class="submit-block "  data-input-status="ok" >
+			<input type="submit" class="" value="Отправить" />
+			<span class="submit-block__help" >Нажмите для отправки формы</span>
+		</div>
+		
+	</form>
 </div>
 
-<footer class="nav-block __bg__c-main-bg " >
+<footer class=" {{class}} " >
 	footer
 </footer>
 

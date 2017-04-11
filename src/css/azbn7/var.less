@@ -36,11 +36,13 @@
 
 @c-main-bg:#ffffff;
 @c-main-color:#000000;
+
+/*
 @c-main-bg:#bef574;
 @c-main-7ba83f:#7ba83f;
 @c-main-bef574:#bef574;
 @c-main-932ea8:#932ea8;
-
+*/
 
 @trans-speed:0.4s;
 
@@ -97,6 +99,12 @@
 	}
 	.h(@val:0px) {
 		height:@val;
+	}
+	.calcFS(@f-min:10, @f-max:100, @v-min:320, @v-max:1920){
+		font-size: ~"calc( (100vw - @{v-min}px) / (@{v-max} - @{v-min}) * (@{f-max} - @{f-min}) + @{f-min}px)";
+	}
+	.calcLH(@f-min:10, @f-max:100, @v-min:320, @v-max:1920){
+		line-height: ~"calc( (100vw - @{v-min}px) / (@{v-max} - @{v-min}) * (@{f-max} - @{f-min}) + @{f-min}px)";
 	}
 	
 }

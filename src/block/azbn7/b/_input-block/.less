@@ -5,7 +5,7 @@
 	&[data-required] {
 		&[data-input-status="ok"], &[data-input-status="1"] {
 			
-			span.status {
+			.input-block__status {
 				opacity:1;
 				
 				&:before {
@@ -35,12 +35,12 @@
 		#site.size(2em);
 	}
 	
-	span.status {
+	&__status {
 		opacity:0;
 		#site.color(rgba(123,168,63,1));
 	}
 	
-	span.help {
+	&__help {
 		float:right;
 		#site.size(1em);
 		#site.italic();
@@ -53,73 +53,6 @@
 			opacity:0.4;
 		}
 		
-	}
-	
-	input, textarea, select {
-		transition:all @trans-speed / 1.25 ease;
-		display:block;
-		border-radius:0px;
-		border:1px #7ba83f solid;
-		border-bottom-width:3px;
-		//border-right-width:2px;
-		padding: .4em;
-		margin-left:auto;
-		margin-right:auto;
-		#site.ff('Arial');
-		#site.size(2em);
-		#site.bg(transparent);
-		#site.w(100%);
-		
-		&[type="checkbox"], &[type="radio"] {
-			display:inline-block;
-			border:1px transparent solid;
-			transform-origin: center center;
-			transform: scale(1.25);
-			#site.w(auto);
-			
-			&:focus {
-				border:1px transparent solid;
-				#site.bg(rgba(190,245,116,0.15));
-			}
-			
-			.ios & {
-				transform: scale(0.67);
-				border:2px #7ba83f solid;
-				border-bottom-width:2px;
-				vertical-align:middle;
-				#site.bg(transparent);
-				#site.color(#7ba83f);
-				
-				&:focus, &:active {
-					border-color:#932ea8;
-				}
-			}
-		}
-		
-		&:focus {
-			outline:none;
-			border-color:rgba(147,46,168,1);
-			#site.bg(rgba(190,245,116,0.15));
-		}
-	}
-	
-	textarea {
-		min-height:0;
-		
-		&:focus, &[data-state="inputed"] {
-			min-height:172px;
-		}
-	}
-	
-	select[multiple] {
-		min-height:256px;
-		
-		@media @media-size-xs {
-			min-height:initial;
-		}
-		.android &, .ios & {
-			min-height:initial;
-		}
 	}
 	
 }
