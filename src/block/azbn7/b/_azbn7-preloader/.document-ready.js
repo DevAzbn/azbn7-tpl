@@ -12,7 +12,7 @@
 			event.preventDefault();
 			
 			if(block.data('is_loaded') && is_timed) {
-				$.Azbn7.body.removeClass('__preloading');
+				$.Azbn7.body.removeClass('_preloading');
 			}
 			
 		});
@@ -74,7 +74,7 @@
 		
 	} else {
 		
-		$.Azbn7.body.removeClass('__preloading');
+		$.Azbn7.body.removeClass('_preloading');
 		
 	}
 	
