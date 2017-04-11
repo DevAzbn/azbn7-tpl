@@ -1,15 +1,14 @@
 .azbn7-ugc {
 	
 	&__html {
-		
-		#site.size(1.6rem);
+		#site.size(1.25rem);
 		
 		* {
 			max-width:100%;
-			#site.ff(inherit);
 			vertical-align:baseline;
 			border-collapse:collapse;
 			cursor:auto;
+			#site.ff(inherit);
 		}
 		
 		img, iframe, embed, video {
@@ -22,6 +21,7 @@
 		p {
 			margin: 0 0 1.5em 0;
 			#site.lh(1.5em);
+			#site.color(#000000);
 			
 			&:last-child {
 				margin-bottom:0;
@@ -92,20 +92,8 @@
 			margin-top:2em;
 			margin-bottom:2em;
 			
-			@media @media-size-xs {
-				overflow-y:hidden;
-				max-width:100%;
-			}
-			
-			@media @media-size-sm {
-				overflow-y:hidden;
-				max-width:100%;
-			}
-			
-			@media @media-size-md {
-				overflow-y:hidden;
-				max-width:100%;
-			}
+			overflow-y:hidden;
+			max-width:100%;
 			
 			table {
 				margin-top:0;
