@@ -227,6 +227,23 @@
 	}
 	
 }
+.b-container {
+	
+	&-adaptive {
+		max-width:1170px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	
+}
+.clear, .clearfix {
+	clear:both;
+	
+	&:after {
+		content:'';
+		clear:both;
+	}
+}
 .input-block {
 	margin:2em 0 4em;
 	#site.size(1rem);
