@@ -5,7 +5,7 @@ function __fecss_ScreenJS() {
 	ctrl.screen = {
 		w : 0,
 		h : 0,
-		type : 'xs',//sm,md,lg
+		type : 'xs',//sm,md,dl,lg
 		orientation : 'portrait',//landscape
 	};
 	
@@ -21,6 +21,11 @@ function __fecss_ScreenJS() {
 			'landscape' : [],
 		},
 		'md' : {
+			'default' : [],
+			'portrait' : [],
+			'landscape' : [],
+		},
+		'dl' : {
 			'default' : [],
 			'portrait' : [],
 			'landscape' : [],
@@ -44,8 +49,12 @@ function __fecss_ScreenJS() {
 		return (ctrl.screen.w < 1200 && ctrl.screen.w > 991);
 	};
 	
+	ctrl.isDL = function() {
+		return (ctrl.screen.w < 1441 && ctrl.screen.w > 1199);
+	};
+	
 	ctrl.isLG = function() {
-		return (ctrl.screen.w > 1199);
+		return (ctrl.screen.w > 1440);
 	};
 	
 	ctrl.isMax = function(w) {
@@ -67,6 +76,9 @@ function __fecss_ScreenJS() {
 		} else
 		if(ctrl.isMD()) {
 			result = 'md';
+		} else
+		if(ctrl.isDL()) {
+			result = 'dl';
 		} else
 		if(ctrl.isLG()) {
 			result = 'lg';
@@ -164,14 +176,15 @@ $(window).on('resize', function(){
 
 /*
 
-screenJS.is(xs/sm/md/lg/portrait/landscape) - да/нет
+screenJS.is(xs/sm/md/dl/lg/portrait/landscape) - да/нет
 
 screenJS.isXS() - да/нет
 screenJS.isSM() - да/нет
 screenJS.isMD() - да/нет
+screenJS.isDL() - да/нет
 screenJS.isLG() - да/нет
 
-screenJS.screenIs() - вернет xs/sm/md/lg
+screenJS.screenIs() - вернет xs/sm/md/dl/lg
 
 screenJS.isPortrait() - да/нет
 screenJS.isLandscape() - да/нет
