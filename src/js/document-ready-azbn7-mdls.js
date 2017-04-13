@@ -6,11 +6,13 @@
 		
 		if($.Azbn7) {
 			
+			/*
 			$.Azbn7.mdl('fnc').include('/js/azbn7/mdl/screen.mdl.js', function(){
 				
 				$.Azbn7.mdl('Screen').setScreen();
 				
 			});
+			*/
 			
 			$.Azbn7.mdl('fnc').include('/js/azbn7/mdl/api.mdl.js', function(){
 				

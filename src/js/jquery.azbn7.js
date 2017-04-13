@@ -260,6 +260,178 @@ if(jQuery) {
 			});
 			
 			
+			ctrl.load('Screen', new (function() {
+				
+				var _ctrl = this;
+				
+				_ctrl.screen = {
+					w : 0,
+					h : 0,
+					type : 'xs',//sm,md,dl,lg
+					orientation : 'portrait',//landscape
+				};
+				
+				_ctrl.__resizefunctions = {
+					'xs' : {
+						'default' : [],
+						'portrait' : [],
+						'landscape' : [],
+					},
+					'sm' : {
+						'default' : [],
+						'portrait' : [],
+						'landscape' : [],
+					},
+					'md' : {
+						'default' : [],
+						'portrait' : [],
+						'landscape' : [],
+					},
+					'dl' : {
+						'default' : [],
+						'portrait' : [],
+						'landscape' : [],
+					},
+					'lg' : {
+						'default' : [],
+						'portrait' : [],
+						'landscape' : [],
+					},
+				};
+				
+				_ctrl.isXS = function() {
+					return (_ctrl.screen.w < 768);
+				};
+				
+				_ctrl.isSM = function() {
+					return (_ctrl.screen.w < 992 && _ctrl.screen.w > 767);
+				};
+				
+				_ctrl.isMD = function() {
+					return (_ctrl.screen.w < 1200 && _ctrl.screen.w > 991);
+				};
+				
+				_ctrl.isDL = function() {
+					return (_ctrl.screen.w < 1441 && _ctrl.screen.w > 1199);
+				};
+				
+				_ctrl.isLG = function() {
+					return (_ctrl.screen.w > 1440);
+				};
+				
+				_ctrl.isMax = function(w) {
+					return _ctrl.screen.w > w ? false : true;
+				}
+				
+				_ctrl.isMin = function(w) {
+					//console.log(_ctrl.screen.w);
+					return _ctrl.screen.w < w ? false : true;
+				}
+				
+				_ctrl.screenIs = function() {
+					var result = 'noname';
+					if(_ctrl.isXS()) {
+						result = 'xs';
+					} else
+					if(_ctrl.isSM()) {
+						result = 'sm';
+					} else
+					if(_ctrl.isMD()) {
+						result = 'md';
+					} else
+					if(_ctrl.isDL()) {
+						result = 'dl';
+					} else
+					if(_ctrl.isLG()) {
+						result = 'lg';
+					}
+					return result;
+				};
+				
+				
+				
+				_ctrl.isPortrait = function() {
+					return (_ctrl.screen.h > _ctrl.screen.w);
+				};
+				
+				_ctrl.isLandscape = function() {
+					return (_ctrl.screen.w > _ctrl.screen.h);
+				};
+				
+				_ctrl.orientationIs = function() {
+					var result = 'noname';
+					if(_ctrl.isPortrait()) {
+						result = 'portrait';
+					} else
+					if(_ctrl.isLandscape()) {
+						result = 'landscape';
+					}
+					return result;
+				};
+				
+				_ctrl.is = function(str) {
+					return (str == _ctrl.screenIs() || str == _ctrl.orientationIs());
+				};
+				
+				_ctrl.onResize = function(scr, fnc) {
+					if(scr.type) {
+						var type = _ctrl.__resizefunctions[scr.type];
+						
+						if(scr.orientation) {
+							type[scr.orientation].push(fnc);
+						} else {
+							type.default.push(fnc);
+						}
+					}
+				}
+				
+				_ctrl.resizeCall = function(scr) {
+					if(scr.type) {
+						if(_ctrl.__resizefunctions[scr.type].default) {
+							for(var i = 0; i < _ctrl.__resizefunctions[scr.type].default.length; i++) {
+								var fnc = _ctrl.__resizefunctions[scr.type].default[i];
+								fnc(scr);
+							}
+						}
+						if(_ctrl.__resizefunctions[scr.type][scr.orientation]) {
+							for(var i = 0; i < _ctrl.__resizefunctions[scr.type][scr.orientation].length; i++) {
+								var fnc = _ctrl.__resizefunctions[scr.type][scr.orientation][i];
+								fnc(scr);
+							}
+						}
+					}
+				}
+				
+				_ctrl.setScreen = function() {
+					var w = window,
+						d = document,
+						e = d.documentElement,
+						g = d.getElementsByTagName('body')[0],
+						x = w.innerWidth || e.clientWidth || g.clientWidth,
+						y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+					
+					_ctrl.screen.w = x;
+					_ctrl.screen.h = y;
+					
+					_ctrl.screen.type = _ctrl.screenIs();
+					_ctrl.screen.orientation = _ctrl.orientationIs();
+					
+					_ctrl.resizeCall(_ctrl.screen);
+					console.log(_ctrl.screen);
+					
+					return _ctrl.screen;
+				};
+				
+				return _ctrl;
+				
+			})());
+			
+			//ctrl.mdl('Screen').setScreen();
+			
+			$(window).on('resize', function(){
+				ctrl.mdl('Screen').setScreen();
+			});
+			
 			return ctrl;
 			
 		};

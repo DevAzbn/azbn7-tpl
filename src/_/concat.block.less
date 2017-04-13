@@ -1,11 +1,11 @@
 
 
-
 .azbn7 {
 	
 	
 	
 }
+
 
 
 
@@ -688,6 +688,14 @@ hr {
 	border-top: 1px;
 	margin:1.5em 0 !important;
 }
+.clear, .clearfix {
+	clear:both;
+	
+	&:after {
+		content:'';
+		clear:both;
+	}
+}
 
 input, textarea, select {
 	transition:all @trans-speed / 1.25 ease;
@@ -756,14 +764,6 @@ select[multiple] {
 	}
 }
 
-.clear, .clearfix {
-	clear:both;
-	
-	&:after {
-		content:'';
-		clear:both;
-	}
-}
 .hidden {
 	display:none;
 	
