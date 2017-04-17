@@ -5,6 +5,8 @@
 	
 	if(block.length) {
 		
+		var time_limit = parseInt(block.attr('data-time-limit')) || 0;
+		
 		var is_timed = false;
 		var percent_position = 0;
 		
@@ -36,41 +38,58 @@
 			
 		});
 		
-		var intr = setInterval(function() {
+		if(time_limit) {
 			
-			var check = Math.random();
-			
-			if(check > 0.5 && percent_position < 100) {
-				
-				percent_position++;
-				
-				block.find('.azbn7-preloader__cancel-btn').text(percent_position);
-				
-				if(block.data('is_loaded')) {
-					percent_position = percent_position + 9;
-				}
-				
-				//var h = 100 + (pos);
-				//var o = (100 - (pos / 5.5)) / 100;
-				
-				/*
-				b.css({
-					'width' : pos + '%',
-				})
-					.attr('data-pos', pos);
-				*/
-				
-			} else if(percent_position > 99) {
-				
-				clearInterval(intr);
+			var intr = setTimeout(function(){
 				
 				is_timed = true;
+				block.data('is_loaded', true);
 				
 				$.Azbn7.body.trigger('azbn7.preloader.check');
 				
-			}
+			}, time_limit);
 			
-		}, 40);
+		} else {
+			
+			var intr = setInterval(function() {
+				
+				var check = Math.random();
+				
+				if(check > 0.5 && percent_position < 100) {
+					
+					percent_position++;
+					
+					//block.find('.azbn7-preloader__cancel-btn').text(percent_position);
+					
+					if(block.data('is_loaded')) {
+						percent_position = percent_position + 9;
+					}
+					
+					//var h = 100 + (pos);
+					//var o = (100 - (pos / 5.5)) / 100;
+					
+					/*
+					b.css({
+						'width' : pos + '%',
+					})
+						.attr('data-pos', pos);
+					*/
+					
+				} else if(percent_position > 99) {
+					
+					clearInterval(intr);
+					
+					is_timed = true;
+					
+					$.Azbn7.body.trigger('azbn7.preloader.check');
+					
+				}
+				
+			}, 40);
+			
+		}
+		
+		
 		
 	} else {
 		

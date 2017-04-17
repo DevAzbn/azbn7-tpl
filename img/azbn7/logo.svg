@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- 14.4338/25 = 0,577352 ; 28.8675 -->
-<svg width="295" height="92.169" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" >
+<svg width="700" height="300" viewBox="0 0 295 92.169" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" >
 	
 	<style>
+	@keyframes animation-dash-grid {
+		0% {
+			stroke-dashoffset:144;
+		}
+		100% {
+			stroke-dashoffset:0;
+		}
+	}
+	@keyframes animation-dash-1 {
+		0% {
+			stroke-dashoffset:173.2056;
+			stroke-width:2;
+		}
+		100% {
+			stroke-dashoffset:0;
+			stroke-width:6;
+		}
+	}
+	@keyframes animation-dash-2 {
+		0% {
+			stroke-dashoffset:173.2056;
+			stroke-width:2;
+		}
+		100% {
+			stroke-dashoffset:0;
+			stroke-width:6;
+		}
+	}
+	@keyframes animation-dash-3 {
+		0% {
+			stroke-dashoffset:202.0732;
+			stroke-width:2;
+		}
+		100% {
+			stroke-dashoffset:0;
+			stroke-width:6;
+		}
+	}
+	@keyframes animation-dash-4 {
+		0% {
+			stroke-dashoffset:144.338;
+			stroke-width:2;
+		}
+		100% {
+			stroke-dashoffset:0;
+			stroke-width:6;
+		}
+	}
+	
 	.line {
 		transition:all 0.4s ease;
 	}
@@ -13,15 +62,61 @@
 		stroke:rgba(0,0,0,.5);
 	}
 	#grid .line {
-		opacity:0;
 		stroke-width:0.25;
-		stroke:rgba(0,255,0,.25);
+		/*stroke:rgba(0,255,0,1);*/
+		stroke:rgba(0,0,0,0.3);
+		animation-duration:1.25s;
+		animation-timing-function:linear;
+		animation-fill-mode:forwards;
+		animation-iteration-count:1;
+		animation-delay:0s;
+		animation-name:animation-dash-grid;
+		stroke-dasharray:144;
+		stroke-dashoffset:144;
+		fill: none;
 	}
 	#text .line {
-		opacity:0;
-		stroke-width:3;
-		stroke:rgba(0,0,0,1);
-		fill: none;
+		stroke-width:2;
+		/*stroke:rgba(0,0,0,1);*/
+		stroke:#7ba83f;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		animation-duration:1.25s;
+		animation-timing-function:ease-out;
+		animation-fill-mode:forwards;
+		animation-iteration-count:1;
+		animation-delay:0s;
+		fill:none;
+		transition:all 0.3s ease;
+		pointer-events:auto;
+	}
+	#text .line:hover {
+		/*stroke-width:5;*/
+		stroke:#932ea8;
+	}
+	#text .line:nth-child(1) {
+		animation-delay:1.25s;
+		animation-name:animation-dash-1;
+		stroke-dasharray:173.2056;
+		stroke-dashoffset:173.2056;
+	}
+	#text .line:nth-child(2) {
+		animation-delay:1.75s;
+		animation-name:animation-dash-2;
+		stroke-dasharray:173.2056;
+		stroke-dashoffset:173.2056;
+	}
+	#text .line:nth-child(3) {
+		animation-delay:2.50s;
+		animation-name:animation-dash-3;
+		stroke-dasharray:202.0732;
+		stroke-dashoffset:202.0732;
+	}
+	#text .line:nth-child(4) {
+		animation-delay:3.25s;
+		animation-name:animation-dash-4;
+		stroke-dasharray:144.338;
+		stroke-dashoffset:144.338;
 	}
 	</style>
 	
@@ -40,7 +135,7 @@
 	
 	<g id="grid" >
 		
-		<path class="line" d="
+		<path id="grid__vertical" class="line" d="
 			M 10 10 L 10 82.169
 			M 35 10 L 35 82.169
 			M 60 10 L 60 82.169
@@ -92,6 +187,17 @@
 			
 			" />
 		
+		<!--
+		<animate
+			xlink:href="#grid__vertical"
+			attributeName="d"
+			attributeType="auto"
+			dur="5s"
+			to=""
+			fill="freeze"
+			/>
+		-->
+		
 	</g>
 	
 	<g id="text" >
@@ -106,9 +212,9 @@
 			l 50 -28.8676
 			" />
 		
-		<!-- z -->
+		<!-- z !24.4338 -->
 		<path class="line" d="
-			M 85 24.4338
+			M 85 38.8676
 			l 25 -14.4338
 			l 25 14.4338
 			l -50 28.8676
