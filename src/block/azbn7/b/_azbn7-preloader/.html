@@ -9,3 +9,31 @@
 	</a>
 	
 </div>
+
+<script>
+(function(){
+	
+	var pl = document.getElementsByClassName('azbn7-preloader');
+	
+	if(sessionStorage.getItem('azbn7.hide_preloader')) {
+		
+		if(pl.length) {
+			
+			for(var i in pl) {
+				
+				if(pl[i].parentNode) {
+					pl[i].parentNode.removeChild(pl[i]);
+				}
+				
+			}
+			
+		}
+		
+	} else {
+		
+		sessionStorage.setItem('azbn7.hide_preloader', true);
+		
+	}
+	
+})();
+</script>

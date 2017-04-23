@@ -1,0 +1,3 @@
+
+!function(){var t=$.Azbn7.body.find(".layout-content");if(t.length){var e=$(".layout-header"),o=$(".layout-footer");t.css({"min-height":$(window).outerHeight(!0)-e.outerHeight(!0)-o.outerHeight(!0)+"px"})}}();
+!function(){var e=$.Azbn7.body.find(".header-menu");if(e.length){var d=e.find(".header-menu-ctrl"),i=e.find(".items._list"),n=e.find(".items._visible"),t=e.find(".items._hidden");n.empty(),t.empty();var r=e.width()-d.outerWidth(!0);i.children().clone(!0).appendTo(n),n.children().get().reverse().map(function(e){return n.outerWidth(!0)<r||$(e).prependTo(t),e}),n.outerWidth(!0)<r&&0==t.children().length?d.addClass("_hidden"):d.removeClass("_hidden")}}();

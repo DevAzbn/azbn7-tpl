@@ -26,7 +26,17 @@
 			align-content:stretch;
 			
 			li, .item {
-				
+				display:flex;
+				align-items:center;
+			}
+			
+			a {
+				display:inline-block;
+				margin:0 1em;
+				//#site.w(100%);
+				#site.size(1.5rem);
+				#site.color(@c-main-bg);
+				#site.uppercase();
 			}
 		}
 		
@@ -53,10 +63,23 @@
 		
 	}
 	
+	&-ctrl {
+		display:flex;
+		align-items:center;
+		
+		&._hidden {
+			display:none;
+		}
+	}
+	
 	&-btn {
 		#site.w(48px);
 		#site.h(48px);
-		#site.bg(#000000);
+		#site.bg(red);
+		
+		&._active {
+			#site.bg(green);
+		}
 	}
 	
 }
