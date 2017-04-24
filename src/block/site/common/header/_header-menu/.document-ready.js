@@ -18,6 +18,7 @@
 			
 		});
 		
+		/*
 		$(document.body).on('click.azbn7.header-menu.items.item', '.header-menu .items._hidden._active li, .header-menu .items._hidden._active .item', {}, function(event){
 			event.preventDefault();
 			
@@ -25,6 +26,7 @@
 			_btn.toggleClass('_active');
 			
 		});
+		*/
 		
 		//_list.children().clone(true).appendTo(_hidden);
 		

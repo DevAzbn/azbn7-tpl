@@ -1,0 +1,39 @@
+.azbn7-dropdown {
+	position:relative;
+	#site.z(1);
+	
+	&__toggle {
+		position:relative;
+		#site.z(1);
+		
+		&:after {
+			display: inline-block;
+			content:'▼';
+			margin-top: -1em;
+			margin-left:.75em;
+			#site.size(0.5em);
+		}
+		
+	}
+	
+	&__list {
+		position:absolute;
+		left:0;
+		top:100%;
+		transition:all @trans-speed ease;
+		opacity:0;
+		#site.z(-1);
+	}
+	
+	&._active &__toggle {
+		&:after {
+			content:'▲';
+		}
+	}
+	
+	&._active &__list {
+		opacity:1;
+		#site.z(2);
+	}
+	
+}

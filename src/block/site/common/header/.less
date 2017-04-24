@@ -1,4 +1,15 @@
 .layout-header {
+	position:relative;
 	border-bottom:1px @c-layout-main-border solid;
 	#site.bg(@c-layout-main-bg);
+	#site.z(2);
+	
+	& .azbn7-dropdown__list {
+		#site.bg(@c-layout-main-bg);
+	}
+	
+	& .header-menu .items._hidden {
+		#site.bg(@c-layout-main-bg);
+	}
+	
 }
