@@ -526,5 +526,39 @@
 <!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter44096394 = new Ya.Metrika({ id:44096394, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/44096394" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 
 
+<script>
+(function(){
+	/*
+	hash:""
+	host:"localhost:3000"
+	hostname:"localhost"
+	href:"http://localhost:3000/"
+	origin:"http://localhost:3000"
+	pathname:"/"
+	port:"3000"
+	protocol:"http:"
+	*/
+	var l = window.location;
+	var t = new Date().getTime();
+	
+	var i = document.createElement('img');
+	i.width = 0; i.height = 0;
+	i.onload = function(){document.body.appendChild(i);};
+	i.setAttribute('src', 'http://app.azbn.ru/counter/?t=common&h=' + l.hostname + '&p=' + l.port + '&lt=' + t);
+	
+	/*
+	var h = document.getElementsByTagName('head')[0];
+	if(h) {
+		var u = 'http://azbn.ru/js/counter/?hostname=' + l.hostname + '&port=' + l.port + '&ltime=' + t
+		var s = document.createElement('script');
+		s.language = 'javascript';
+		s.type = 'text/javascript';
+		s.src = u;
+		h.appendChild(h);
+	}
+	*/
+})();
+</script>
+
 </body>
 </html>
