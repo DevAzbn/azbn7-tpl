@@ -1012,6 +1012,8 @@ select[multiple] {
 
 .layout-footer {
 	border-top:1px @c-layout-main-border solid;
+	padding:10px 0;
+	#site.size(1.5em);
 	#site.bg(@c-layout-main-bg);
 }
 .layout-header {
@@ -1021,7 +1023,16 @@ select[multiple] {
 	#site.z(2);
 	
 	& .azbn7-dropdown__list {
+		margin-top:10px;
+		border-bottom:1px @c-input-main-border__focus solid;
+		border-right:1px @c-input-main-border__focus solid;
+		border-left:1px @c-input-main-border__focus solid;
 		#site.bg(@c-layout-main-bg);
+		
+		li {
+			padding:4px 0 7px;
+		}
+		
 	}
 	
 	& .header-menu .items._hidden {
