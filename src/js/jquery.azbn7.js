@@ -432,6 +432,68 @@ if(jQuery) {
 				ctrl.mdl('Screen').setScreen();
 			});
 			
+			
+			ctrl.load('API', new (function() {
+				
+				var _ctrl = this;
+				
+				_ctrl.name = 'api';
+				_ctrl.uid = 'azbn7__mdl__api';
+				
+				_ctrl.config = {
+					url : '/api/v1/',
+					access_as : 'user',
+					key : 'public',
+					request_method : 'POST',
+					response_dataType : 'json',
+					method : 'version',
+				};
+				
+				_ctrl.setConfig = function(params){
+					_ctrl.config = $.extend({}, _ctrl.config, params);
+				};
+				
+				// {jsonp:false, jsonpCallback:"callbackName"}
+				
+				_ctrl.on = {
+					beforeSend : function(jqXHR, settings){},
+					error : function(jqXHR, textStatus, errorThrown){console.warn(textStatus);},
+					dataFilter : function(data, type){return data;},
+					success : function(data, textStatus, jqXHR){console.log(data);},
+					complete : function(jqXHR, textStatus){},
+				};
+				
+				_ctrl.r = function(params, cb, request_method, response_dataType){
+					
+					request_method = request_method || _ctrl.config.request_method;
+					response_dataType = response_dataType ||  _ctrl.config.response_dataType;
+					
+					params.key = _ctrl.config.key;
+					params.access_as = _ctrl.config.access_as;
+					
+					params.method = params.method || _ctrl.config.method;
+					
+					if(!cb) {
+						cb = ctrl.on.success;
+					}
+					
+					$.ajax({
+						url : _ctrl.config.url,
+						type : request_method,
+						dataType : response_dataType,
+						data : params,
+						success : cb,
+						error : _ctrl.on.error,
+					});
+					
+				};
+				
+				return _ctrl;
+				
+			})());
+			
+			ctrl.mdl('API').setConfig(JSON.parse(ctrl.body.attr('data-azbn7__mdl__api') || '{}'));
+			
 			return ctrl;
 			
 		};
@@ -462,7 +524,8 @@ if(jQuery) {
 				body.on($.Azbn7.config.prefix + '.widget.getData', '.' + __class, {}, function(event, req_data, cb){
 					event.preventDefault();
 					
-					$.Azbn7.api(req_data, cb);
+					//$.Azbn7.api(req_data, cb);
+					$.Azbn7.mdl('API').r(req_data, cb);
 					
 				});
 				
