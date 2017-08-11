@@ -1,1 +1,1 @@
-"use strict";!function(n){n.Azbn7&&n.Azbn7.mdl("fnc").include("/js/azbn7/mdl/codecache.mdl.js",function(){n.Azbn7.mdl("CodeCache").doUpdate(1e4)})}(jQuery);
+"use strict";!function(n){n.Azbn7&&(n.Azbn7.mdl("fnc").include("/js/azbn7/mdl/codecache.mdl.js",function(){n.Azbn7.mdl("CodeCache").doUpdate(1e4)}),n.Azbn7.mdl("fnc").include("/js/azbn7/mdl/jqeact.mdl.js",function(){n.Azbn7.mdl("jQeact").loadtemplates(["/json/azbn7/jqeact/tpl0001.json"])}))}(jQuery);

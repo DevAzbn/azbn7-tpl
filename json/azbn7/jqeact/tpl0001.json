@@ -1,0 +1,32 @@
+{
+	
+	".input-block" : {
+		"tag" : "div",
+		"attrs" : {
+			"class" : "input-block",
+			"data-required" : "text",
+			"data-input-status" : "ok"
+		},
+		"children" : [
+			".input-block label.input-block__label",
+			".input-block input[type=text]"
+		]
+	},
+		
+		".input-block label.input-block__label" : {
+			"tag" : "label",
+			"attrs" : {
+				"class" : "input-block__label",
+				"html" : "Это label"
+			}
+		},
+		
+		".input-block input[type=text]" : {
+			"tag" : "input",
+			"attrs" : {
+				"name" : "f[Контакт]",
+				"value" : "Имя"
+			}
+		}
+	
+}
