@@ -13,7 +13,7 @@
 				
 				ctrl.templates = {};
 				
-				ctrl.loadtemplates = function(tpl_arr) {
+				ctrl.loadtemplates = function(tpl_arr, cb) {
 					
 					if(tpl_arr.length) {
 						
@@ -22,6 +22,10 @@
 							$.getJSON(item, function(data){
 								
 								ctrl.templates = $.extend({}, ctrl.tpls, data);
+								
+								if((i == (tpl_arr.length - 1)) && cb && typeof cb == 'function') {
+									cb();
+								}
 								
 							});
 							
@@ -33,7 +37,7 @@
 				
 				ctrl.createFromObject = function(obj) {
 					
-					var el = $('<' + obj.tag + '/>', obj.attrs);
+					var el = $('<' + obj.tagName + '/>', obj.attrs);
 					
 					el
 						.addClass(ctrl.uid + '__element')
