@@ -1,0 +1,380 @@
+<script>
+/*
+// Refer to https://gist.github.com/remy/350433
+try {
+	// Test webstorage existence.
+	if (!window.localStorage || !window.sessionStorage) throw "exception";
+	// Test webstorage accessibility - Needed for Safari private browsing.
+	localStorage.setItem('storage_test', 1);
+	localStorage.removeItem('storage_test');
+} catch(e) {
+	(function () {
+		var Storage = function (type) {
+			function createCookie(name, value, days) {
+				var date, expires;
+				
+				if (days) {
+					date = new Date();
+					date.setTime(date.getTime() + (days*24*60*60*1000));
+					expires = '; expires=' + date.toGMTString();
+				} else {
+					expires = "";
+				}
+				document.cookie = name + '=' + value + expires + '; path=/';
+			}
+			
+			function readCookie(name) {
+				var nameEQ = name + "=",
+					ca = document.cookie.split(';'),
+					i, c;
+				
+				for (i=0; i < ca.length; i++) {
+					c = ca[i];
+					while (c.charAt(0)==' ') {
+						c = c.substring(1,c.length); 2480
+					}
+					
+					if (c.indexOf(nameEQ) == 0) {
+						return c.substring(nameEQ.length,c.length);
+					}
+				}
+				return null;
+			}
+			
+			function setData(data) {
+				// Convert data into JSON and encode to accommodate for special characters.
+				data = encodeURIComponent(JSON.stringify(data));
+				// Create cookie.
+				if (type == 'session') {
+					createCookie(getSessionName(), data, 365);
+				} else {
+					createCookie('localStorage', data, 365);
+				}
+			}
+			
+			function clearData() {
+				if (type == 'session') {
+					createCookie(getSessionName(), '', 365);
+				} else {
+					createCookie('localStorage', '', 365);
+				}
+			}
+			
+			function getData() {
+				// Get cookie data.
+				var data = type == 'session' ? readCookie(getSessionName()) : readCookie('localStorage');
+				// If we have some data decode, parse and return it.
+				return data ? JSON.parse(decodeURIComponent(data)) : {};
+			}
+			
+			function getSessionName() {
+				// If there is no name for this window, set one.
+				// To ensure it's unquie use the current timestamp.
+				if(!window.name) {
+					window.name = new Date().getTime();
+				}
+				return 'sessionStorage' + window.name;
+			}
+			
+			// Initialise if there's already data.
+			var data = getData();
+			
+			return {
+				length: 0,
+				clear: function () {
+					data = {};
+					this.length = 0;
+					clearData();
+				},
+				getItem: function (key) {
+					return data[key] === undefined ? null : data[key];
+				},
+				key: function (i) {
+					// not perfect, but works
+					var ctr = 0;
+					for (var k in data) {
+						if (ctr == i) return k;
+						else ctr++;
+					}
+					return null;
+				},
+				removeItem: function (key) {
+					delete data[key];
+					this.length--;
+					setData(data);
+				},
+				setItem: function (key, value) {
+					data[key] = value+''; // forces the value to a string
+					this.length++;
+					setData(data);
+				}
+			};
+		};
+		
+		// Replace window.localStorage and window.sessionStorage with out custom
+		// implementation.
+		var localStorage = new Storage('local');
+		var sessionStorage = new Storage('session');
+		window.localStorage = localStorage;
+		window.sessionStorage = sessionStorage;
+		// For Safari private browsing need to also set the proto value.
+		window.localStorage.__proto__ = localStorage;
+		window.sessionStorage.__proto__ = sessionStorage;
+	})();
+}
+*/
+</script>
+
+<script>
+
+var Azbn7_Lib_Cookie = {
+	
+	prefix : 'azbn7.',
+	
+	get : function(name) {
+		name = Azbn7_Lib_Cookie.prefix + name;
+		var matches = document.cookie.match(new RegExp(
+			'(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
+		));
+		return matches ? decodeURIComponent(matches[1]) : undefined;
+	},
+	
+	set : function(name, value, options) {
+		name = Azbn7_Lib_Cookie.prefix + name;
+		options = options || {};
+		
+		var expires = options.expires;
+		
+		if (typeof expires == 'number' && expires) {
+			var d = new Date();
+			d.setTime(d.getTime() + expires * 1000);
+			expires = options.expires = d;
+		}
+		if (expires && expires.toUTCString) {
+			options.expires = expires.toUTCString();
+		}
+		
+		value = encodeURIComponent(value);
+		
+		var updatedCookie = name + '=' + value;
+		
+		for (var propName in options) {
+			updatedCookie += '; ' + propName;
+			var propValue = options[propName];
+			if (propValue !== true) {
+				updatedCookie += '=' + propValue;
+			}
+		}
+		
+		document.cookie = updatedCookie;
+	},
+	
+	delete : function(name) {
+		Azbn7_Lib_Cookie.set(name, '', {
+			expires : -1,
+		});
+	},
+	
+}
+
+
+
+var Azbn7_SpeedChecker = new (function(cfg) {
+	
+	var ctrl = this;
+	
+	ctrl.__check_period = cfg.check.interval;
+	ctrl.__checker = null;
+	ctrl.__request = null;
+	ctrl.__url = cfg.check.url || '/';
+	ctrl.__params = cfg.check.params || 'azbn7[lib][speedchecker]=1';
+	ctrl.__in_request = false;
+	ctrl.__stat = {};
+	
+	for(var i in cfg.breakpoints) {
+		(function(_s){
+			ctrl.__stat[_s] = [];
+		})(cfg.breakpoints[i].name);
+	}
+	
+	document.body.setAttribute('data-azbn7__lib__speedchecker-ms', 0);
+	document.body.setAttribute('data-azbn7__lib__speedchecker-state', 0);
+	
+	ctrl.now = function() {
+		return new Date().getTime();
+	};
+	
+	(function() {
+		if (window.XMLHttpRequest) {
+			ctrl.__request = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			try {
+				ctrl.__request = new ActiveXObject('Msxml2.XMLHTTP');
+			} catch (e){
+				
+			}
+			try {
+				ctrl.__request = new ActiveXObject('Microsoft.XMLHTTP');
+			} catch (e){
+				
+			}
+		}
+	})();
+	
+	ctrl.check = function(single_cb) {
+		
+		if(ctrl.__request && ctrl.__in_request == false) {
+			
+			ctrl.__in_request = true;
+			
+			var _start = ctrl.now();
+			
+			ctrl.__request.onreadystatechange = function() { 
+				
+				//if(ctrl.__request.readyState == 4 && ctrl.__request.status == 200) {
+				if(ctrl.__request.readyState == 4) {
+					
+					var _stop = ctrl.now();
+					
+					ctrl.__in_request = false;
+					
+					var _r = _stop - _start;
+					
+					document.body.setAttribute('data-azbn7__lib__speedchecker-ms', _r);
+					
+					var _s = 0;
+					var _cb = function(state){};
+					//var _p = 0;
+					
+					for(var i in cfg.breakpoints) {
+						if(_r > i) {//&& (i > _p || i == _p)
+							_s = cfg.breakpoints[i].name;
+							if(cfg.breakpoints[i].callback && typeof cfg.breakpoints[i].callback == 'function') {
+								_cb = cfg.breakpoints[i].callback;
+							} 
+							
+							//_p = i;
+						}
+					}
+					
+					document.body.setAttribute('data-azbn7__lib__speedchecker-state', _s);
+					
+					Azbn7_Lib_Cookie.set('lib.speedchecker.state', _s);
+					
+					ctrl.__stat[_s].push(_stop);
+					
+					_cb(_s);
+					
+					if(single_cb && typeof single_cb == 'function') {
+						single_cb(_s);
+					}
+					
+				}
+				
+			}
+			
+			ctrl.__request.open('POST', ctrl.__url, true);
+			
+			ctrl.__request.setRequestHeader('Content-Charset', 'UTF-8');
+			ctrl.__request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			
+			ctrl.__request.send(ctrl.__params);
+			
+		}
+		
+	}
+	
+	ctrl.check(function(state){
+		console.log('Speed calculated:', state);
+	});
+	
+	if(ctrl.__check_period) {
+		ctrl.__checker = setInterval(ctrl.check, ctrl.__check_period);
+	}
+	
+	return ctrl;
+	
+})({
+	breakpoints : {
+		0 : {
+			name : 'verygood',
+			/*
+			callback : function(state){
+				console.log('Speed calculated:', state);
+			},
+			*/
+		},
+		400 : {
+			name : 'good',
+			/*
+			callback : function(state){
+				console.log('Speed calculated:', state);
+			},
+			*/
+		},
+		800 : {
+			name : 'middle',
+			/*
+			callback : function(state){
+				console.log('Speed calculated:', state);
+			},
+			*/
+		},
+		1600 : {
+			name : 'bad',
+			/*
+			callback : function(state){
+				console.log('Speed calculated:', state);
+			},
+			*/
+		},
+		3200 : {
+			name : 'verybad',
+			/*
+			callback : function(state){
+				console.log('Speed calculated:', state);
+			},
+			*/
+		},
+	},
+	check : {
+		interval : 15000, //false, //10000
+		url : '/',//'/azbn7/lib/speedchecker/',
+		params : 'azbn7[lib][speedchecker]=1',
+	},
+});
+
+
+
+
+(function(){
+	
+	var pl = document.getElementsByClassName('azbn7-preloader');
+	var _hide = parseInt(Azbn7_Lib_Cookie.get('block.preloader.hide'));
+	
+	if(_hide) {
+		
+		if(pl.length) {
+			
+			for(var i in pl) {
+				
+				if(pl[i].parentNode) {
+					pl[i].parentNode.removeChild(pl[i]);
+				}
+				
+			}
+			
+		}
+		
+	} else {
+		
+		//sessionStorage.setItem('hide_azbn7-preloader', true);
+		Azbn7_Lib_Cookie.set('block.preloader.hide', 1);
+		
+	}
+	
+})();
+
+
+
+</script>
