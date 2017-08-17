@@ -550,8 +550,9 @@ var Azbn7_SpeedChecker = new (function(cfg) {
 (function(){
 	
 	var pl = document.getElementsByClassName('azbn7-preloader');
-	var _hide = parseInt(Azbn7_Lib_Cookie.get('block.preloader.hide'));
+	var _hide = parseInt(Azbn7_Lib_Cookie.get('block.preloader.hide') || 0);
 	
+	//if(sessionStorage.getItem('hide_azbn7-preloader')) {
 	if(_hide) {
 		
 		if(pl.length) {
