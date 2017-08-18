@@ -8,8 +8,18 @@
 			"data-input-status" : "ok"
 		},
 		"children" : [
-			".input-block label.input-block__label",
-			".input-block input[type=text]"
+			{
+				"uid" : ".input-block label.input-block__label",
+				"attrs" : {
+				
+				}
+			},
+			{
+				"uid" : ".input-block input[type=text]",
+				"attrs" : {
+				
+				}
+			}
 		]
 	},
 		

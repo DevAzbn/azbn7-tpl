@@ -32,6 +32,7 @@
 				
 				$.Azbn7.mdl('jQeact').loadtemplates([
 					'/json/azbn7/jqeact/tpl0001.json',
+					'/json/azbn7/jqeact/tpl0001.svg.json',
 				], function(){
 					
 					$.Azbn7.mdl('jQeact').parseLayout($.Azbn7.body);

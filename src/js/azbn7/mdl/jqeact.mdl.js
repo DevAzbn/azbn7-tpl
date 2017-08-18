@@ -21,7 +21,7 @@
 							
 							$.getJSON(item, function(data){
 								
-								ctrl.templates = $.extend({}, ctrl.tpls, data);
+								ctrl.templates = $.extend({}, ctrl.templates, data);
 								
 								if((i == (tpl_arr.length - 1)) && cb && typeof cb == 'function') {
 									cb();
@@ -45,10 +45,19 @@
 					
 					if(obj.children && obj.children.length) {
 						
+						
 						obj.children.forEach(function(item, i, arr) {
-							
+							/*
 							var child_el = ctrl.createFromObject(ctrl.templates[item]);
+							child_el.appendTo(el);
+							*/
 							
+							var uid = item.uid || '';
+							var attrs = item.attrs || {};
+							var child_el = ctrl.createFromObject(ctrl.templates[uid]);
+							for(var attr_k in attrs) {
+								child_el.attr(attr_k, attrs[attr_k]);
+							}
 							child_el.appendTo(el);
 							
 						});

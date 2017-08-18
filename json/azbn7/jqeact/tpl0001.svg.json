@@ -1,0 +1,50 @@
+{
+	
+	".hexahedron-logo" : {
+		"tagName" : "svg",
+		"attrs" : {
+			"xmlns" : "http://www.w3.org/2000/svg",
+			"xmlns:xlink" : "http://www.w3.org/1999/xlink",
+			"xmlns:ev" : "http://www.w3.org/2001/xml-events",
+			"class" : "hexahedron-logo",
+			"viewBox" : "0 0 295 92.169",
+			"version" : "1.1",
+			"baseProfile" : "full"
+		},
+		"children" : [
+			{
+				"uid" : ".hexahedron-logo g#hexahedron-logo__text",
+				"attrs" : {
+					"data-test" : "x023"
+				}
+			}
+		]
+	},
+		
+		".hexahedron-logo g#hexahedron-logo__text" : {
+			"tagName" : "g",
+			"attrs" : {
+				"id" : "hexahedron-logo__text"
+			},
+			"children" : [
+				{
+					"uid" : ".hexahedron-logo g#hexahedron-logo__text path.line",
+					"attrs" : {
+					
+					}
+				}
+			]
+		},
+			
+			".hexahedron-logo g#hexahedron-logo__text path.line" : {
+				"tagName" : "path",
+				"attrs" : {
+					"class" : "line",
+					"d" : "M 60 67.7352 l 0 -28.8676 l -25 -14.4338 l -25 14.4338 l 0 28.8676 l 50 -28.8676"
+				},
+				"children" : [
+					
+				]
+			}
+		
+}
