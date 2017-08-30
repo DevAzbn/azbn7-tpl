@@ -23,7 +23,7 @@
 			
 			if(!google) {
 				
-				if(typeof ga != 'undefined' || false) {
+				if(typeof ga != 'undefined') {
 					google = ga;
 				}
 				
@@ -45,13 +45,17 @@
 				
 				var uid_arr = uid.split('.');
 				
+				/*
 				google('send', {
 					'hitType': 'event',
 					'eventCategory': uid_arr[0],
 					'eventAction': uid_arr[1],
 					'eventLabel': uid_arr[2],
-					'eventValue': uid_arr[3],
+					'eventValue': uid_arr[3] || prm || null,
 				});
+				*/
+				
+				google('send', 'event', uid_arr[0], uid_arr[1], uid_arr[2]);
 				
 			}
 			
