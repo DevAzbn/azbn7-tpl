@@ -61,6 +61,35 @@
 	}
 	
 }
+.azbn7-block-loading {
+	
+	&:before {
+		content:'';
+		position:absolute;
+		top:0;
+		left:0;
+		opacity:0.85;
+		#site.w(100%);
+		#site.h(100%);
+		#site.bg(@c-layout-main-bg * 0.85);
+		#site.z(1);
+	}
+	
+	&__roller {
+		content:'x';
+		position:absolute;
+		top:0;
+		left:0;
+		display:flex;
+		align-items: center;
+		justify-content: center;
+		#site.color(white);
+		#site.w(100%);
+		#site.h(100%);
+		#site.z(2);
+	}
+	
+}
 body._preloading {
 	overflow:hidden;
 }
@@ -748,15 +777,15 @@ a {
 	
 	
 }
-hr {
-	border-color: #cccccc;
-	border-top: 1px;
-	margin:1.5em 0 !important;
-}
 .btn {
 	
 	
 	
+}
+hr {
+	border-color: #cccccc;
+	border-top: 1px;
+	margin:1.5em 0 !important;
 }
 
 input, textarea, select {
