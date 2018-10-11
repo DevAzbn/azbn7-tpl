@@ -1,1 +1,1 @@
-!function(n){n.Azbn7&&!function(){var t=function(){var n=this;return n};n.Azbn7.load("Default",new t)}()}(jQuery);
+!function(n){n.Azbn7&&n.Azbn7.load("Default",new function(){return this})}(jQuery);

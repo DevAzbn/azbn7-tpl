@@ -1,0 +1,1 @@
+"use strict";var demo=new Vue({el:"#demo",data:{searchQuery:"",gridColumns:["name","power"],gridData:[{name:"Chuck Norris",power:1/0},{name:"Bruce Lee",power:9e3},{name:"Jackie Chan",power:7e3},{name:"Jet Li",power:8e3}]}});
